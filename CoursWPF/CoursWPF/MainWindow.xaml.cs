@@ -20,6 +20,7 @@ namespace CoursWPF
     /// </summary>
     public partial class MainWindow : Window
     {
+       
         public MainWindow()
         {
             InitializeComponent();
@@ -51,6 +52,7 @@ namespace CoursWPF
             b2.Click += Methode_Click;
             b2.Click += (s, e) =>
             {
+                
                 MessageBox.Show((s as Button).Content.ToString());
                 Grid.SetColumn((s as Button), 0);
             };
