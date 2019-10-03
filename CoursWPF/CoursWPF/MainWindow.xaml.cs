@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -44,18 +45,19 @@ namespace CoursWPF
             //Grid.SetColumn(b, 1);
             //g.Children.Add(b);
             //Content = g;
-            b1.Content = "Coucou";
-            Button b2 = new Button() { Content = "B2" };
-            Grid.SetRow(b2, 0);
-            Grid.SetColumn(b2, 1);
-            maGrille.Children.Add(b2);
-            b2.Click += Methode_Click;
-            b2.Click += (s, e) =>
-            {
-                
-                MessageBox.Show((s as Button).Content.ToString());
-                Grid.SetColumn((s as Button), 0);
-            };
+            //b1.Content = "Coucou";
+            //Button b2 = new Button() { Content = "B2" };
+            //Grid.SetRow(b2, 0);
+            //Grid.SetColumn(b2, 1);
+            //maGrille.Children.Add(b2);
+            //b2.Click += Methode_Click;
+            //b2.Click += (s, e) =>
+            //{
+
+            //    MessageBox.Show((s as Button).Content.ToString());
+            //    Grid.SetColumn((s as Button), 0);
+            //};
+            t1.Text = "";
         }
 
         //Methode abonnée à l'event click du bouton B1
@@ -71,6 +73,22 @@ namespace CoursWPF
             }
                 
             //b1.Content = "Coucou2";
+        }
+
+        private void T1_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            TextBox textBox = (sender as TextBox);
+            Regex r = new Regex("^[0-9]+$");
+            if(!r.IsMatch(textBox.Text))
+            {
+                textBox.BorderBrush = new SolidColorBrush(Color.FromRgb(180,132,154));
+                textBox.BorderThickness = new Thickness(10);
+            }
+            else
+            {
+                textBox.BorderBrush = new SolidColorBrush(Color.FromRgb(0, 255, 0));
+                textBox.BorderThickness = new Thickness(1);
+            }
         }
     }
 }
