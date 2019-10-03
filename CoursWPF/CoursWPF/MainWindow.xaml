@@ -10,15 +10,19 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="*"></RowDefinition>
             <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"></ColumnDefinition>
             <ColumnDefinition Width="*"></ColumnDefinition>
         </Grid.ColumnDefinitions>
         <Button x:Name="b1" Content="Button" Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="1" Click="Methode_Click"  />
-        <Label Content="" x:Name="l1" Grid.Column="0" Grid.Row="0"/>
         
-        <TextBox x:Name="t1" Grid.Row="0" Grid.Column="1" TextChanged="T1_TextChanged" />
+        
+        <TextBox x:Name="t1" Grid.Row="0" Grid.Column="0" TextChanged="T1_TextChanged" TextWrapping="Wrap" />
+        <TextBlock x:Name="tb1" Grid.Column="1" Grid.Row="0" TextWrapping="Wrap" />
+        <RadioButton Grid.Column="0" Grid.Row="2"/>
+        <RadioButton Grid.Column="1" Grid.Row="2"/>
     </Grid>
     
 </Window>

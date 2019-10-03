@@ -67,8 +67,7 @@ namespace CoursWPF
             //<=>
             if(sender is Button)
             {
-                l1.Content = l1.Content.ToString() + (sender as Button).Content;
-                (sender as Button).Content = "coucou2";
+                //(sender as Button).IsEnabled = false;
 
             }
                 
@@ -78,6 +77,7 @@ namespace CoursWPF
         private void T1_TextChanged(object sender, TextChangedEventArgs e)
         {
             TextBox textBox = (sender as TextBox);
+            tb1.Text = textBox.Text;
             Regex r = new Regex("^[0-9]+$");
             if(!r.IsMatch(textBox.Text))
             {
