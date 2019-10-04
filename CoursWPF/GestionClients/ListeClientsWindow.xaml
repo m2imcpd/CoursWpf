@@ -7,6 +7,8 @@
         mc:Ignorable="d"
         Title="Liste des clients" Height="469.565" Width="508.152">
     <StackPanel x:Name="listeClientsPanel" Margin="0,0,3.6,4">
+        <ListBox x:Name="ListeBoxClients" Height="347" Margin="0,0,-0.4,0" ScrollViewer.VerticalScrollBarVisibility="Visible" />
+        <Button Content="Modifier" Height="93" Margin="0,0,-0.4,0" Click="Button_Click"/>
 
     </StackPanel>
 </Window>

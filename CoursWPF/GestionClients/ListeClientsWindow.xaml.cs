@@ -34,26 +34,32 @@ namespace GestionClients
 
         private void AfficherClients()
         {
-            foreach(Client c in ListeClients)
-            {
+            ListeBoxClients.ItemsSource = ListeClients;
+            //foreach(Client c in ListeClients)
+            //{
                
-                TextBlock l = new TextBlock { Text = c.ToString()};
-                Button b = new Button { Content = "Modifier" };
-                b.Click += (sender, e) =>
-                {
-                    Modifier(c);
-                };
-                StackPanel s = new StackPanel { Orientation = Orientation.Horizontal };
-                s.Children.Add(l);
-                s.Children.Add(b);
-                listeClientsPanel.Children.Add(s);
-            }
+            //    TextBlock l = new TextBlock { Text = c.ToString()};
+            //    Button b = new Button { Content = "Modifier" };
+            //    b.Click += (sender, e) =>
+            //    {
+            //        Modifier(c);
+            //    };
+            //    StackPanel s = new StackPanel { Orientation = Orientation.Horizontal };
+            //    s.Children.Add(l);
+            //    s.Children.Add(b);
+            //    listeClientsPanel.Children.Add(s);
+            //}
         }
 
         private void Modifier(Client c)
         {
             AddClient editWindow = new AddClient(ListeClients, c);
             editWindow.Show();
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            Modifier(ListeBoxClients.SelectedItem as Client);
         }
     }
 }
