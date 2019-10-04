@@ -16,9 +16,9 @@ namespace GestionClients.Classes
         public string Prenom { get => prenom; set => prenom = value; }
         public string Telephone { get => telephone; set => telephone = value; }
 
-        public override string ToString()
-        {
-            return $"Nom : {Nom}, Prénom : {Prenom}, Téléphone : {Telephone}";
-        }
+        //public override string ToString()
+        //{
+        //    return $"Nom : {Nom}, Prénom : {Prenom}, Téléphone : {Telephone}";
+        //}
     }
 }

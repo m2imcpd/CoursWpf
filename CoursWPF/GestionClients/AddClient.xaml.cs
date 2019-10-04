@@ -32,9 +32,9 @@ namespace GestionClients
             ListeClients = l;
         }
 
-        public AddClient(List<Client> l, Client c): this()
+        public AddClient(List<Client> l, Client c): this(l)
         {
-            ListeClients = l;
+            //ListeClients = l;
             tNom.Text = c.Nom;
             tPrenom.Text = c.Prenom;
             tTelephone.Text = c.Telephone;

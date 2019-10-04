@@ -34,7 +34,8 @@ namespace GestionClients
 
         private void AfficherClients()
         {
-            ListeBoxClients.ItemsSource = ListeClients;
+            //ListeBoxClients.ItemsSource = ListeClients;
+            ListeViewClient.ItemsSource = ListeClients;
             //foreach(Client c in ListeClients)
             //{
                
@@ -59,7 +60,8 @@ namespace GestionClients
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            Modifier(ListeBoxClients.SelectedItem as Client);
+            // Modifier(ListeBoxClients.SelectedItem as Client);
+             Modifier(ListeViewClient.SelectedItem as Client);
         }
     }
 }
