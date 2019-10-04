@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CoursWPF", "CoursWPF\CoursW
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "exImpot", "exImpot\exImpot.csproj", "{6F959CC6-9069-4484-88F8-06CD87364C97}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GestionClients", "GestionClients\GestionClients.csproj", "{3397DBF6-36A7-49A3-A1B4-9392D4CF0BC8}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{6F959CC6-9069-4484-88F8-06CD87364C97}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6F959CC6-9069-4484-88F8-06CD87364C97}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6F959CC6-9069-4484-88F8-06CD87364C97}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3397DBF6-36A7-49A3-A1B4-9392D4CF0BC8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3397DBF6-36A7-49A3-A1B4-9392D4CF0BC8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3397DBF6-36A7-49A3-A1B4-9392D4CF0BC8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3397DBF6-36A7-49A3-A1B4-9392D4CF0BC8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

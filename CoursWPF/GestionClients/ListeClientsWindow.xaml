@@ -1,0 +1,12 @@
+﻿<Window x:Class="GestionClients.ListeClientsWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:GestionClients"
+        mc:Ignorable="d"
+        Title="Liste des clients" Height="469.565" Width="508.152">
+    <StackPanel x:Name="listeClientsPanel" Margin="0,0,3.6,4">
+
+    </StackPanel>
+</Window>
