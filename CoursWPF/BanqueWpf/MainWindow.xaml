@@ -9,7 +9,7 @@
     <Grid>
         <Button Content="Ajouter un client" HorizontalAlignment="Left" Margin="29,37,0,0" VerticalAlignment="Top" Width="129" Height="37" Click="Button_Click"/>
         <Button Content="Effectuer une opération" HorizontalAlignment="Left" Margin="181,37,0,0" VerticalAlignment="Top" Width="160" RenderTransformOrigin="-5.249,1.179" Height="37" Click="Button_Click_1"/>
-        <Button Content="Liste des opérations" HorizontalAlignment="Left" Margin="360,37,0,0" VerticalAlignment="Top" Width="424" Height="37"/>
+        <Button Content="Liste des opérations" HorizontalAlignment="Left" Margin="360,37,0,0" VerticalAlignment="Top" Width="424" Height="37" Click="Button_Click_2"/>
         <ListView  x:Name="listeCompteView" HorizontalAlignment="Left" Height="231" Margin="29,100,0,0" VerticalAlignment="Top" Width="755">
             <ListView.View>
                 <GridView>

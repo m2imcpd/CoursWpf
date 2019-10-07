@@ -45,5 +45,18 @@ namespace BanqueWpf
                 MessageBox.Show("Merci de selectionner un compte");
             }
         }
+
+        private void Button_Click_2(object sender, RoutedEventArgs e)
+        {
+            if (listeCompteView.SelectedItem != null)
+            {
+                ListeOperationsWindow w = new ListeOperationsWindow(listeCompteView.SelectedItem as Compte);
+                w.Show();
+            }
+            else
+            {
+                MessageBox.Show("Merci de selectionner un compte");
+            }
+        }
     }
 }

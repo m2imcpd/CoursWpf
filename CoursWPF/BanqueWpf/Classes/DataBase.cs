@@ -102,5 +102,28 @@ namespace BanqueWpf.Classes
             connection.Close();
             return res;
         }
+
+        public List<Operation> GetOperationsByCompte(int compteId)
+        {
+            List<Operation> liste = new List<Operation>();
+            command = new SqlCommand("SELECT id, date_operation, montant from banque_operation where compteId = @compteId", connection);
+            command.Parameters.Add(new SqlParameter("@compteId", compteId));
+            connection.Open();
+            reader = command.ExecuteReader();
+            while(reader.Read())
+            {
+                Operation o = new Operation
+                {
+                    Id = reader.GetInt32(0),
+                    DateOperation = reader.GetDateTime(1),
+                    Montant = reader.GetDecimal(2),
+                    CompteId = compteId
+                };
+                liste.Add(o);
+            }
+            command.Dispose();
+            connection.Close();
+            return liste;
+        }
     }
 }
