@@ -32,5 +32,18 @@ namespace BanqueWpf
             AddClientWindow w = new AddClientWindow();
             w.Show();
         }
+
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+            if(listeCompteView.SelectedItem != null)
+            {
+                OperationWindow w = new OperationWindow(listeCompteView.SelectedItem as Compte);
+                w.Show();
+            }
+            else
+            {
+                MessageBox.Show("Merci de selectionner un compte");
+            }
+        }
     }
 }

@@ -80,5 +80,27 @@ namespace BanqueWpf.Classes
             connection.Close();
             return res;
         }
+
+        public bool AddOperation(decimal montant, int compteId)
+        {
+            bool res = false;
+            command = new SqlCommand("INSERT INTO banque_operation (montant, compteId, date_operation) values(@montant, @compteId, @date_operation)", connection);
+            command.Parameters.Add(new SqlParameter("@montant", montant));
+            command.Parameters.Add(new SqlParameter("@compteId", compteId));
+            command.Parameters.Add(new SqlParameter("@date_operation", DateTime.Now));
+            connection.Open();
+            if (command.ExecuteNonQuery() > 0)
+            {
+                command.Dispose();
+                command = new SqlCommand("UPDATE banque_compte SET solde = solde + @montant WHERE id = @id", connection);
+                command.Parameters.Add(new SqlParameter("@montant", montant));
+                command.Parameters.Add(new SqlParameter("@id", compteId));
+                if (command.ExecuteNonQuery() > 0)
+                    res = true;
+                command.Dispose();
+            }
+            connection.Close();
+            return res;
+        }
     }
 }
