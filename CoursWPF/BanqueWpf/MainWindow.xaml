@@ -18,7 +18,13 @@
                     <GridViewColumn Header="Prénom" Width="150" DisplayMemberBinding="{Binding Client.Prenom}"/>
                     <GridViewColumn Header="Téléphone" Width="150" DisplayMemberBinding="{Binding Client.Telephone}"/>
                     <GridViewColumn Header="N° Compte" Width="200" DisplayMemberBinding="{Binding Numero}"/>
-                    <GridViewColumn Header="solde" Width="100" DisplayMemberBinding="{Binding Solde}" />
+                    <GridViewColumn Header="solde" Width="100" >
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding Solde}" Width="80" TextAlignment="Right"></TextBlock>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
                 </GridView>
             </ListView.View>
         </ListView>
