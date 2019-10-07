@@ -59,6 +59,9 @@
     <Compile Include="Info.xaml.cs">
       <DependentUpon>Info.xaml</DependentUpon>
     </Compile>
+    <Compile Include="MultithreadingWindow.xaml.cs">
+      <DependentUpon>MultithreadingWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="PersonneWindow.xaml.cs">
       <DependentUpon>PersonneWindow.xaml</DependentUpon>
     </Compile>
@@ -84,6 +87,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="MultithreadingWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="PersonneWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

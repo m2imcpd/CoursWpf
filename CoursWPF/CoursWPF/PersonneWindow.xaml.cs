@@ -1,6 +1,7 @@
 ﻿using CoursWPF.Classes;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -22,28 +23,27 @@ namespace CoursWPF
     {
         private Personne maPersonne;
 
-        private List<Personne> ListePersonne;
+        private ObservableCollection<Personne> ListePersonne;
 
         
         public PersonneWindow()
         {
-            InitializeComponent();
             MaPersonne = new Personne() { Nom = "tata", Prenom = "titi" };
             DataContext = MaPersonne;
-            ListePersonne = new List<Personne>();
+            ListePersonne = new ObservableCollection<Personne>();
             ListePersonne.Add(MaPersonne);
+            InitializeComponent();
             maListe.ItemsSource = ListePersonne;
-            
-            
         }
 
         public Personne MaPersonne { get => maPersonne; set => maPersonne = value; }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show(MaPersonne.Prenom);
-            ListePersonne.Add(MaPersonne);
-            maListe.ItemsSource = ListePersonne;
+            //MessageBox.Show(MaPersonne.Prenom);
+            //ListePersonne.Add(MaPersonne);
+            ListePersonne[0].Nom = "zerze";
+
         }
     }
 }

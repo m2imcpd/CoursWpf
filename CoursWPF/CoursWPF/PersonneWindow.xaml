@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         Title="PersonneWindow" Height="450" Width="800">
     <Grid>
-        <TextBox x:Name="test" HorizontalAlignment="Left" Height="23" Margin="52,33,0,0" TextWrapping="Wrap" Text="{Binding Nom}" VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="test" HorizontalAlignment="Left" Height="23" Margin="52,33,0,0" TextWrapping="Wrap" Text="{Binding Nom, Mode=TwoWay}" VerticalAlignment="Top" Width="120"/>
         <TextBox HorizontalAlignment="Left" Height="23" Margin="52,73,0,0" TextWrapping="Wrap" Text="{Binding Prenom}" VerticalAlignment="Top" Width="120"/>
         <Button Content="Ajouter" HorizontalAlignment="Left" Margin="52,109,0,0" VerticalAlignment="Top" Width="120" Click="Button_Click"/>
         <Label Content="{Binding Nom}" HorizontalAlignment="Left" Margin="195,33,0,0" VerticalAlignment="Top"/>
