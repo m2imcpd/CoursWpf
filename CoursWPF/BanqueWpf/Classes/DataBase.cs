@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
@@ -32,9 +33,9 @@ namespace BanqueWpf.Classes
             connection = new SqlConnection(@"Data Source=(LocalDb)\CoursMCPD;Integrated Security=True");
         }
 
-        public List<Compte> GetComptes()
+        public ObservableCollection<Compte> GetComptes()
         {
-            List<Compte> liste = new List<Compte>();
+            ObservableCollection<Compte> liste = new ObservableCollection<Compte>();
             command = new SqlCommand("SELECT c.id, c.numero_compte, c.solde, c.clientId, cl.nom, cl.prenom, cl.telephone from banque_compte as c inner join banque_client as cl on cl.id = c.clientId", connection);
             connection.Open();
             reader = command.ExecuteReader();
@@ -54,9 +55,36 @@ namespace BanqueWpf.Classes
             return liste;
         }
 
-        public bool AddClient(string nom, string prenom, string telephone)
+        //public bool AddClient(string nom, string prenom, string telephone)
+        //{
+        //    bool res = false;
+
+        //    command = new SqlCommand("INSERT INTO banque_client (nom, prenom, telephone) OUTPUT INSERTED.ID values(@nom, @prenom, @telephone)", connection);
+        //    command.Parameters.Add(new SqlParameter("@nom", nom));
+        //    command.Parameters.Add(new SqlParameter("@prenom", prenom));
+        //    command.Parameters.Add(new SqlParameter("@telephone", telephone));
+        //    connection.Open();
+        //    int clientId = (int)command.ExecuteScalar();
+        //    command.Dispose();
+        //    if(clientId > 0)
+        //    {
+        //        command = new SqlCommand("INSERT INTO banque_compte(numero_compte, clientId, solde, date_creation) values (@numero_compte, @clientId, 0, @date_creation)", connection);
+        //        command.Parameters.Add(new SqlParameter("@numero_compte", Guid.NewGuid().ToString()));
+        //        command.Parameters.Add(new SqlParameter("@clientId", clientId));
+        //        command.Parameters.Add(new SqlParameter("@date_creation", DateTime.Now));
+        //        if(command.ExecuteNonQuery() > 0)
+        //        {
+        //            res = true;
+        //        }
+        //        command.Dispose();
+        //    }
+        //    connection.Close();
+        //    return res;
+        //}
+
+        public Compte AddClient(string nom, string prenom, string telephone)
         {
-            bool res = false;
+            Compte c = new Compte();
 
             command = new SqlCommand("INSERT INTO banque_client (nom, prenom, telephone) OUTPUT INSERTED.ID values(@nom, @prenom, @telephone)", connection);
             command.Parameters.Add(new SqlParameter("@nom", nom));
@@ -65,20 +93,21 @@ namespace BanqueWpf.Classes
             connection.Open();
             int clientId = (int)command.ExecuteScalar();
             command.Dispose();
-            if(clientId > 0)
+            if (clientId > 0)
             {
-                command = new SqlCommand("INSERT INTO banque_compte(numero_compte, clientId, solde, date_creation) values (@numero_compte, @clientId, 0, @date_creation)", connection);
-                command.Parameters.Add(new SqlParameter("@numero_compte", Guid.NewGuid().ToString()));
+                string numero_compte = Guid.NewGuid().ToString();
+                command = new SqlCommand("INSERT INTO banque_compte(numero_compte, clientId, solde, date_creation) OUTPUT INSERTED.ID values (@numero_compte, @clientId, 0, @date_creation)", connection);
+                command.Parameters.Add(new SqlParameter("@numero_compte", numero_compte));
                 command.Parameters.Add(new SqlParameter("@clientId", clientId));
                 command.Parameters.Add(new SqlParameter("@date_creation", DateTime.Now));
-                if(command.ExecuteNonQuery() > 0)
-                {
-                    res = true;
-                }
+                c.Id = (int)command.ExecuteScalar();
+                c.Numero = numero_compte;
+                c.Solde = 0;
+                c.Client = new Client { Id = clientId, Nom = nom, Prenom = prenom, Telephone = telephone };
                 command.Dispose();
             }
             connection.Close();
-            return res;
+            return c;
         }
 
         public bool AddOperation(decimal montant, int compteId)

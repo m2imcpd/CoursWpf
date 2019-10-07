@@ -1,6 +1,7 @@
 ﻿using BanqueWpf.Classes;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -29,7 +30,7 @@ namespace BanqueWpf
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            AddClientWindow w = new AddClientWindow();
+            AddClientWindow w = new AddClientWindow(listeCompteView.ItemsSource as ObservableCollection<Compte>);
             w.Show();
         }
 
