@@ -1,0 +1,26 @@
+﻿<Window x:Class="CoursWPF.ClientWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:CoursWPF"
+        mc:Ignorable="d"
+        Title="ClientWindow" Height="359.007" Width="285.478">
+    <Grid>
+        <TextBox x:Name="tNom" HorizontalAlignment="Left" Height="23" Margin="100,30,0,0" TextWrapping="Wrap" Text="{Binding Nom, Mode=TwoWay}" VerticalAlignment="Top" Width="120" />
+        <Label Content="Nom : " HorizontalAlignment="Left" Margin="22,30,0,0" VerticalAlignment="Top" Height="33" Width="47"/>
+        <TextBox x:Name="tPrenom" HorizontalAlignment="Left" Height="23" Margin="100,68,0,0" TextWrapping="Wrap" Text="{Binding Prenom}" VerticalAlignment="Top" Width="120" />
+        <Label Content="Prénom : " HorizontalAlignment="Left" Margin="10,68,0,0" VerticalAlignment="Top" Height="33" Width="59"/>
+        <Button Content="Ajouter" HorizontalAlignment="Left" Margin="22,123,0,0" VerticalAlignment="Top" Width="207" Click="Button_Click"/>
+        <ListView x:Name="ListeClient" HorizontalAlignment="Left" Height="121" Margin="22,174,0,0" VerticalAlignment="Top" Width="207">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="Nom" Width="100" DisplayMemberBinding="{Binding Nom}"/>
+                    <GridViewColumn Header="Prénom" Width="100" DisplayMemberBinding="{Binding Prenom}"/>
+                </GridView>
+            </ListView.View>
+        </ListView>
+        <Button Content="Edit" HorizontalAlignment="Left" Margin="22,300,0,0" VerticalAlignment="Top" Width="207" Click="Button_Click_1"/>
+
+    </Grid>
+</Window>
