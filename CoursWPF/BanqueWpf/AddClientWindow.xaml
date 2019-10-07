@@ -1,0 +1,19 @@
+﻿<Window x:Class="BanqueWpf.AddClientWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:BanqueWpf"
+        mc:Ignorable="d"
+        Title="Ajouter un client" Height="230.665" Width="305.978">
+    <Grid>
+        <Label Content="Nom : " HorizontalAlignment="Left" Margin="34,23,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="tNom" HorizontalAlignment="Left" Height="26" Margin="84,23,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="205"/>
+        <Label Content="Prénom : " HorizontalAlignment="Left" Margin="21,62,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="tPrenom" HorizontalAlignment="Left" Height="26" Margin="84,62,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="205"/>
+        <Label Content="Téléphone : " HorizontalAlignment="Left" Margin="5,102,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="tTelephone" HorizontalAlignment="Left" Height="26" Margin="84,102,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="205"/>
+        <Button Content="Ajouter" HorizontalAlignment="Left" Margin="10,150,0,0" VerticalAlignment="Top" Width="279" Height="30" Click="Button_Click"/>
+
+    </Grid>
+</Window>
