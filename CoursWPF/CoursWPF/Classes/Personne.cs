@@ -11,8 +11,10 @@ namespace CoursWPF.Classes
     {
         private string nom;
         private string prenom;
+        private int id;
 
-        public string Nom { get => nom; set { nom = value;
+        public string Nom { get => nom; set {
+                nom = value;
                 PropertyChange("Nom");
             }
         }
@@ -25,6 +27,8 @@ namespace CoursWPF.Classes
                 PropertyChange("Prenom");
             }
         }
+
+        public int Id { get => id; set => id = value; }
 
         public event PropertyChangedEventHandler PropertyChanged;
 

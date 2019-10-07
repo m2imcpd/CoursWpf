@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -22,7 +23,7 @@ namespace CoursWPF
     public partial class PersonneWindow : Window
     {
         private Personne maPersonne;
-
+        private bool edition = false;
         private ObservableCollection<Personne> ListePersonne;
 
         
@@ -40,10 +41,28 @@ namespace CoursWPF
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            //MessageBox.Show(MaPersonne.Prenom);
-            //ListePersonne.Add(MaPersonne);
-            ListePersonne[0].Nom = "zerze";
+            if(!edition)
+                ListePersonne.Add(new Personne { Nom =tNom.Text, Prenom = tPrenom.Text});
+            else
+            {
+                foreach(Personne p in ListePersonne)
+                {
+                    if(p.Nom == MaPersonne.Nom)
+                    {
+                        p.Prenom = MaPersonne.Prenom;
+                        break;
+                    }
+                }
+            }
+        }
 
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+            if(maListe.SelectedItem != null)
+            {
+                MaPersonne = maListe.SelectedItem as Personne;
+                edition = true;
+            }
         }
     }
 }
