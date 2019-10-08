@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GestionClients", "GestionCl
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BanqueWpf", "BanqueWpf\BanqueWpf.csproj", "{19502B27-D455-4507-93D2-40DFDF20973B}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CoursWpfMVVM", "CoursWpfMVVM\CoursWpfMVVM.csproj", "{D15624D2-8F0D-4505-80E5-1C01DE888CC8}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{19502B27-D455-4507-93D2-40DFDF20973B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{19502B27-D455-4507-93D2-40DFDF20973B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{19502B27-D455-4507-93D2-40DFDF20973B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D15624D2-8F0D-4505-80E5-1C01DE888CC8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D15624D2-8F0D-4505-80E5-1C01DE888CC8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D15624D2-8F0D-4505-80E5-1C01DE888CC8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D15624D2-8F0D-4505-80E5-1C01DE888CC8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

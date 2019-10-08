@@ -1,0 +1,28 @@
+﻿<Window x:Class="CoursWpfMVVM.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:CoursWpfMVVM"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+    <Grid>
+        <TextBox HorizontalAlignment="Left" Height="23" Margin="43,26,0,0" TextWrapping="Wrap" Text="{Binding Nom}" VerticalAlignment="Top" Width="120"/>
+        <TextBox HorizontalAlignment="Left" Height="23" Margin="43,75,0,0" TextWrapping="Wrap" Text="{Binding Prenom}" VerticalAlignment="Top" Width="120"/>
+        <TextBox HorizontalAlignment="Left" Height="23" Margin="43,121,0,0" TextWrapping="Wrap" Text="{Binding Rue}" VerticalAlignment="Top" Width="120"/>
+        <TextBox HorizontalAlignment="Left" Height="23" Margin="43,186,0,0" TextWrapping="Wrap" Text="{Binding Ville}" VerticalAlignment="Top" Width="120"/>
+        <Button Content="Button" HorizontalAlignment="Left" Margin="43,259,0,0" VerticalAlignment="Top" Width="120" Click="Button_Click"/>
+        <ListView ItemsSource="{Binding listeClientsAdresses}" HorizontalAlignment="Left" Height="197" Margin="364,26,0,0" VerticalAlignment="Top" Width="397">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="Nom" DisplayMemberBinding="{Binding Nom}" Width="100"/>
+                    <GridViewColumn Header="Prénom" DisplayMemberBinding="{Binding Prenom}" Width="100"/>
+                    <GridViewColumn Header="Rue" DisplayMemberBinding="{Binding Rue}" Width="100"/>
+                    <GridViewColumn Header="Ville" DisplayMemberBinding="{Binding Ville}" Width="100"/>
+                </GridView>
+            </ListView.View>
+        </ListView>
+
+
+    </Grid>
+</Window>
