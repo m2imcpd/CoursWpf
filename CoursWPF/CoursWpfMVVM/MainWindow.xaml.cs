@@ -24,14 +24,14 @@ namespace CoursWpfMVVM
         public MainWindow()
         {
             InitializeComponent();
-            DataContext = new ClientAdresseViewModel();
+            //DataContext = new ClientAdresseViewModel();
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            MessageBox.Show((DataContext as ClientAdresseViewModel).Nom);
-            (DataContext as ClientAdresseViewModel).Update();
-            (DataContext as ClientAdresseViewModel).AddClientToList();
-        }
+        //private void Button_Click(object sender, RoutedEventArgs e)
+        //{
+        //    MessageBox.Show((DataContext as ClientAdresseViewModel).Nom);
+        //    (DataContext as ClientAdresseViewModel).Update();
+        //    (DataContext as ClientAdresseViewModel).AddClientToList();
+        //}
     }
 }

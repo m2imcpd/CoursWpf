@@ -56,6 +56,8 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Models\Adresse.cs" />
+    <Compile Include="Tools\AddCommand.cs" />
+    <Compile Include="Tools\RelayCommand.cs" />
     <Compile Include="ViewModels\CallMemberNameAttribute.cs" />
     <Compile Include="ViewModels\ClientAdresseViewModel.cs" />
     <Compile Include="ViewModels\ViewModelBase.cs" />

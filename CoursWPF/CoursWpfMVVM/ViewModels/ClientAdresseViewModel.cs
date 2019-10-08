@@ -1,10 +1,12 @@
 ﻿using CoursWpfMVVM.Models;
+using CoursWpfMVVM.Tools;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Input;
 
 namespace CoursWpfMVVM.ViewModels
 {
@@ -69,17 +71,22 @@ namespace CoursWpfMVVM.ViewModels
             }
         }
 
+        public ICommand AddBoutonCommand { get; set; }
+
 
         public ClientAdresseViewModel()
         {
             listeClientsAdresses = new ObservableCollection<object>();
             client = new Client { Nom = "abadi", Prenom = "ihab", Id = 1 };
             adresse = new Adresse { ClientId = 1, Id = 1, Rue = "paris", Ville = "tourcoing" };
+            //AddBoutonCommand = new AddCommand(listeClientsAdresses, new { Nom = Nom, Prenom = Prenom, Rue = Rue, Ville = Ville });
+            AddBoutonCommand = new RelayCommand((o) => { AddClientToList(); });
         }
 
 
         public void AddClientToList()
         {
+           
             listeClientsAdresses.Add(new { Nom = Nom, Prenom = Prenom, Rue = Rue, Ville = Ville});
         }
         public void Update()
