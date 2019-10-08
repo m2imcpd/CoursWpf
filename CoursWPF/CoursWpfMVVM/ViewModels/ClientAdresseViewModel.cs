@@ -81,6 +81,7 @@ namespace CoursWpfMVVM.ViewModels
             adresse = new Adresse { ClientId = 1, Id = 1, Rue = "paris", Ville = "tourcoing" };
             //AddBoutonCommand = new AddCommand(listeClientsAdresses, new { Nom = Nom, Prenom = Prenom, Rue = Rue, Ville = Ville });
             AddBoutonCommand = new RelayCommand((o) => { AddClientToList(); });
+           
         }
 
 
