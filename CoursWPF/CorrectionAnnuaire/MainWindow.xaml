@@ -11,6 +11,7 @@
         <viewModel:MainWindowViewModel></viewModel:MainWindowViewModel>
     </Window.DataContext>
     <Grid>
+        
         <TextBox HorizontalAlignment="Left" Height="23" Margin="72,22,0,0" TextWrapping="Wrap" Text="{Binding Nom}" VerticalAlignment="Top" Width="120"/>
         <Label Content="Nom : " HorizontalAlignment="Left" Margin="10,19,0,0" VerticalAlignment="Top"/>
         <TextBox HorizontalAlignment="Left" Height="23" Margin="72,62,0,0" TextWrapping="Wrap" Text="{Binding Prenom}" VerticalAlignment="Top" Width="120"/>
