@@ -28,6 +28,9 @@ namespace CorrectionAnnuaire.ViewModels
 
         public List<string> listeEmails { get; set; }
 
+        public bool NomRadio { get; set; }
+        public bool PrenomRadio { get; set; }
+
         private string searchPhone;
         public string SearchPhone
         {
@@ -95,12 +98,15 @@ namespace CorrectionAnnuaire.ViewModels
             contact = new Contact();
             email = new Email();
             Contacts = DataBase.Instance.GetContactWithEmail();
+            
             listeEmails = new List<string>();
             AddEmailCommand = new RelayCommand(() =>
             {
                 listeEmails.Add(Email);
                 Email = "";
                 RaisePropertyChanged("Count");
+                MainWindow w = new MainWindow();
+                w.Show();
             });
 
             AddContactCommand = new RelayCommand(() =>
