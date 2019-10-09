@@ -94,26 +94,60 @@ namespace CorrectionAnnuaire.Tools
             return res;
         }
 
-        public string SearchContactByPhone(string phone)
+        //public string SearchContactByPhone(string phone = "")
+        //{
+        //    bool found = false;
+        //    command = new SqlCommand("SELECT c.nom, c.prenom, c.telephone, e.mail " +
+        //        "From contact_wpf as c right join email_wpf as e on e.contactid = c.id where telephone = @telephone", connection);
+        //    command.Parameters.Add(new SqlParameter("@telephone", phone));
+        //    connection.Open();
+        //    reader = command.ExecuteReader();
+        //    string nom ="", prenom="", telephone="", emails = "";
+        //    while (reader.Read())
+        //    {
+        //        nom = reader.GetString(0);
+        //        prenom = reader.GetString(1);
+        //        telephone = reader.GetString(2);
+        //        emails += " " + reader.GetString(3);
+        //        found = true;
+        //    }
+        //    command.Dispose();
+        //    connection.Close();
+        //    return (found) ? $"{nom}  {prenom} {telephone}, {emails}" : "No contact found";
+        //}
+
+        public ObservableCollection<object> SearchContactByPhone(string phone = "")
         {
-            bool found = false;
-            command = new SqlCommand("SELECT c.nom, c.prenom, c.telephone, e.mail " +
-                "From contact_wpf as c right join email_wpf as e on e.contactid = c.id where telephone = @telephone", connection);
-            command.Parameters.Add(new SqlParameter("@telephone", phone));
+            ObservableCollection<dynamic> liste = new ObservableCollection<object>();
+
+            command = new SqlCommand("SELECT c.id, c.nom, c.prenom, c.telephone, e.mail " +
+                "From contact_wpf as c right join email_wpf as e on e.contactid = c.id where c.telephone like @telephone OR c.Nom like @telephone OR c.Prenom like @telephone", connection);
+            command.Parameters.Add(new SqlParameter("@telephone", phone + "%"));
             connection.Open();
             reader = command.ExecuteReader();
-            string nom ="", prenom="", telephone="", emails = "";
             while (reader.Read())
             {
-                nom = reader.GetString(0);
-                prenom = reader.GetString(1);
-                telephone = reader.GetString(2);
-                emails += " " + reader.GetString(3);
-                found = true;
+                dynamic o = liste.FirstOrDefault(x => x.Id == reader.GetInt32(0));
+                if (o != null)
+                {
+                    (o.Emails as List<string>).Add(reader.GetString(4));
+                }
+                else
+                {
+                    o = new
+                    {
+                        Id = reader.GetInt32(0),
+                        Nom = reader.GetString(1),
+                        Prenom = reader.GetString(2),
+                        Telephone = reader.GetString(3),
+                        Emails = new List<string>() { reader.GetString(4) }
+                    };
+                    liste.Add(o);
+                }
             }
             command.Dispose();
             connection.Close();
-            return (found) ? $"{nom}  {prenom} {telephone}, {emails}" : "No contact found";
+            return liste;
         }
     }
 }

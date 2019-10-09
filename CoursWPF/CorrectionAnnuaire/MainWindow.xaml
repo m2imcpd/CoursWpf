@@ -5,13 +5,14 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CorrectionAnnuaire"
         xmlns:viewModel="clr-namespace:CorrectionAnnuaire.ViewModels"
+        xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
         mc:Ignorable="d"
-        Title="Contacts" Height="450" Width="800">
+    Title="Contacts" Height="554" Width="800">
     <Window.DataContext>
         <viewModel:MainWindowViewModel></viewModel:MainWindowViewModel>
     </Window.DataContext>
-    <Grid>
-        
+    <Grid Height="523" Margin="0,0,-0.4,0" VerticalAlignment="Top">
+
         <TextBox HorizontalAlignment="Left" Height="23" Margin="72,22,0,0" TextWrapping="Wrap" Text="{Binding Nom}" VerticalAlignment="Top" Width="120"/>
         <Label Content="Nom : " HorizontalAlignment="Left" Margin="10,19,0,0" VerticalAlignment="Top"/>
         <TextBox HorizontalAlignment="Left" Height="23" Margin="72,62,0,0" TextWrapping="Wrap" Text="{Binding Prenom}" VerticalAlignment="Top" Width="120"/>
@@ -40,8 +41,36 @@
         </ListView>
         <Label Content="{Binding Count}" HorizontalAlignment="Left" Margin="55,171,0,0" VerticalAlignment="Top"/>
         <Button Command="{Binding SearchContactCommand}" Content="Search" HorizontalAlignment="Left" Margin="209,244,0,0" VerticalAlignment="Top" Width="135" Height="23"/>
-        <TextBox HorizontalAlignment="Left" Height="23" Margin="23,244,0,0" TextWrapping="Wrap" Text="{Binding SearchPhone}" VerticalAlignment="Top" Width="169"/>
-        <TextBlock HorizontalAlignment="Left" Margin="23,291,0,0" TextWrapping="Wrap" Text="{Binding SearchResult}" VerticalAlignment="Top" Height="55" Width="321"/>
+        <TextBox  HorizontalAlignment="Left" Height="23" Margin="23,244,0,0" TextWrapping="Wrap" Text="{Binding SearchPhone, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="169">
+            <i:Interaction.Triggers>
+                <i:EventTrigger EventName="KeyUp">
+                    <i:InvokeCommandAction Command="{Binding SearchContactCommand}"></i:InvokeCommandAction>
+                </i:EventTrigger>
+            </i:Interaction.Triggers>
+        </TextBox>
+        <StackPanel Margin="8,285,9,11" RenderTransformOrigin="0.5,0.5">
+            <StackPanel.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform AngleY="0.253"/>
+                    <RotateTransform/>
+                    <TranslateTransform Y="1.596"/>
+                </TransformGroup>
+            </StackPanel.RenderTransform>
+            <ItemsControl ItemsSource="{Binding SearchResult}">
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel Orientation="Horizontal">
+                            <Label Content="{Binding Nom}"></Label>
+                            <Label Content="{Binding Prenom}"></Label>
+                            <Label Content="{Binding Telephone}"></Label>
+                            <ListBox ItemsSource="{Binding Emails}"></ListBox>
+                        </StackPanel>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+        </StackPanel>
+        <!--<TextBlock HorizontalAlignment="Left" Margin="23,291,0,0" TextWrapping="Wrap" Text="{Binding SearchResult}" VerticalAlignment="Top" Height="55" Width="321"/>-->
 
     </Grid>
 </Window>

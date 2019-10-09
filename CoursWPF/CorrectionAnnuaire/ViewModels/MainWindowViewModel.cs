@@ -28,11 +28,18 @@ namespace CorrectionAnnuaire.ViewModels
 
         public List<string> listeEmails { get; set; }
 
-        public string SearchPhone { get; set; }
+        private string searchPhone;
+        public string SearchPhone
+        {
+            get => searchPhone; set
+            {
+                searchPhone = value; RaisePropertyChanged();
+            }
+        }
 
-        public string SearchResult { get; set; }
+        //public string SearchResult { get; set; }
 
-
+        public ObservableCollection<object> SearchResult { get; set; }
         public string Email
         {
             get
@@ -69,7 +76,7 @@ namespace CorrectionAnnuaire.ViewModels
         public int Count
         {
             get => listeEmails.Count;
-           
+
         }
 
         public string Telephone
@@ -100,14 +107,14 @@ namespace CorrectionAnnuaire.ViewModels
             {
                 dynamic o = new
                 {
-                    
+
                     Nom = Nom,
-                    Prenom =Prenom,
+                    Prenom = Prenom,
                     Telephone = Telephone,
                     Emails = listeEmails
                 };
 
-                if(DataBase.Instance.AddContactWithEmails(o))
+                if (DataBase.Instance.AddContactWithEmails(o))
                 {
                     Contacts.Add(o);
 
@@ -121,12 +128,12 @@ namespace CorrectionAnnuaire.ViewModels
                 {
                     MessageBox.Show("Error serveur");
                 }
-                
+
             });
 
             SearchContactCommand = new RelayCommand(() =>
             {
-                SearchResult = DataBase.Instance.SearchContactByPhone(SearchPhone);
+                SearchResult = DataBase.Instance.SearchContactByPhone((SearchPhone != null) ? SearchPhone : "");
                 RaisePropertyChanged("SearchResult");
             });
         }
