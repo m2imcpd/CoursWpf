@@ -38,6 +38,9 @@
             </ListView.View>
         </ListView>
         <Label Content="{Binding Count}" HorizontalAlignment="Left" Margin="55,171,0,0" VerticalAlignment="Top"/>
+        <Button Command="{Binding SearchContactCommand}" Content="Search" HorizontalAlignment="Left" Margin="209,244,0,0" VerticalAlignment="Top" Width="135" Height="23"/>
+        <TextBox HorizontalAlignment="Left" Height="23" Margin="23,244,0,0" TextWrapping="Wrap" Text="{Binding SearchPhone}" VerticalAlignment="Top" Width="169"/>
+        <TextBlock HorizontalAlignment="Left" Margin="23,291,0,0" TextWrapping="Wrap" Text="{Binding SearchResult}" VerticalAlignment="Top" Height="55" Width="321"/>
 
     </Grid>
 </Window>

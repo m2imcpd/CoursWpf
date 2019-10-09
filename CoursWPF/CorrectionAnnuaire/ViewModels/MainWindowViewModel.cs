@@ -8,6 +8,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Input;
 
 namespace CorrectionAnnuaire.ViewModels
@@ -26,6 +27,10 @@ namespace CorrectionAnnuaire.ViewModels
         public ICommand SearchContactCommand { get; set; }
 
         public List<string> listeEmails { get; set; }
+
+        public string SearchPhone { get; set; }
+
+        public string SearchResult { get; set; }
 
 
         public string Email
@@ -101,12 +106,28 @@ namespace CorrectionAnnuaire.ViewModels
                     Telephone = Telephone,
                     Emails = listeEmails
                 };
-                Contacts.Add(o);
-                Nom = "";
-                Prenom = "";
-                Telephone = "";
-                listeEmails = new List<string>();
-                RaisePropertyChanged();
+
+                if(DataBase.Instance.AddContactWithEmails(o))
+                {
+                    Contacts.Add(o);
+
+                    Nom = "";
+                    Prenom = "";
+                    Telephone = "";
+                    listeEmails = new List<string>();
+                    RaisePropertyChanged();
+                }
+                else
+                {
+                    MessageBox.Show("Error serveur");
+                }
+                
+            });
+
+            SearchContactCommand = new RelayCommand(() =>
+            {
+                SearchResult = DataBase.Instance.SearchContactByPhone(SearchPhone);
+                RaisePropertyChanged("SearchResult");
             });
         }
     }

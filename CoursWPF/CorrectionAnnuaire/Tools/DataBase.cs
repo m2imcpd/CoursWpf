@@ -60,14 +60,60 @@ namespace CorrectionAnnuaire.Tools
                         Emails = new List<string>() { reader.GetString(4) }
                     };
                     liste.Add(o);
-                }
-
-                
-                
+                }           
             }
             command.Dispose();
             connection.Close();
             return liste;
+        }
+
+        public bool AddContactWithEmails(dynamic o)
+        {
+            bool res = false;
+            command = new SqlCommand("INSERT INTO contact_wpf(nom, prenom, telephone) OUTPUT INSERTED.ID values (@nom, @prenom, @telephone)", connection);
+            command.Parameters.Add(new SqlParameter("@nom", o.Nom));
+            command.Parameters.Add(new SqlParameter("@prenom", o.Prenom));
+            command.Parameters.Add(new SqlParameter("@telephone", o.Telephone));
+            connection.Open();
+            int contactId = (int)command.ExecuteScalar();
+            command.Dispose();
+            if(contactId > 0)
+            {
+                foreach(string e in o.Emails)
+                {
+                    command = new SqlCommand("INSERT INTO email_wpf (mail, contactid) values (@mail,@contactid)", connection);
+                    command.Parameters.Add(new SqlParameter("@mail", e));
+                    command.Parameters.Add(new SqlParameter("@contactid", contactId));
+                    command.ExecuteNonQuery();
+                    command.Dispose();
+                }
+                res = true;
+              
+            }
+            connection.Close();
+            return res;
+        }
+
+        public string SearchContactByPhone(string phone)
+        {
+            bool found = false;
+            command = new SqlCommand("SELECT c.nom, c.prenom, c.telephone, e.mail " +
+                "From contact_wpf as c right join email_wpf as e on e.contactid = c.id where telephone = @telephone", connection);
+            command.Parameters.Add(new SqlParameter("@telephone", phone));
+            connection.Open();
+            reader = command.ExecuteReader();
+            string nom ="", prenom="", telephone="", emails = "";
+            while (reader.Read())
+            {
+                nom = reader.GetString(0);
+                prenom = reader.GetString(1);
+                telephone = reader.GetString(2);
+                emails += " " + reader.GetString(3);
+                found = true;
+            }
+            command.Dispose();
+            connection.Close();
+            return (found) ? $"{nom}  {prenom} {telephone}, {emails}" : "No contact found";
         }
     }
 }
