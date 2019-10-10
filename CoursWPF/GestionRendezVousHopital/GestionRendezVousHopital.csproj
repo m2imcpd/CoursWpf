@@ -70,6 +70,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Models\Medecin.cs" />
+    <Compile Include="Tools\DataBase.cs" />
+    <Compile Include="ViewModels\GestionMedecinViewModel.cs" />
     <Compile Include="ViewModels\MainWindowViewModel.cs" />
     <Compile Include="Views\CParClientWindow.xaml.cs">
       <DependentUpon>CParClientWindow.xaml</DependentUpon>
@@ -153,9 +156,9 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
-    <Folder Include="Models\" />
-    <Folder Include="Tools\" />
+    <Content Include="Tools\tables.sql" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
