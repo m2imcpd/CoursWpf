@@ -4,9 +4,28 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:GestionRendezVousHopital.Views"
+        xmlns:viewModels ="clr-namespace:GestionRendezVousHopital.ViewModels"
         mc:Ignorable="d"
-        Title="GestionPatientWindow" Height="450" Width="800">
+        Title="GestionPatientWindow" Height="235.286" Width="514.571">
+    <Window.DataContext>
+        <viewModels:GestionPatientViewModel></viewModels:GestionPatientViewModel>
+    </Window.DataContext>
     <Grid>
-        
+        <Label Content="Nom : " HorizontalAlignment="Left" Margin="57,25,0,0" VerticalAlignment="Top" Width="59"/>
+        <TextBox HorizontalAlignment="Left" Height="23" Margin="108,28,0,0" TextWrapping="Wrap" Text="{Binding Nom}" VerticalAlignment="Top" Width="153" RenderTransformOrigin="0.451,0.652"/>
+        <Label Content="Adresse : " HorizontalAlignment="Left" Margin="42,51,0,0" VerticalAlignment="Top" Width="59"/>
+        <TextBox HorizontalAlignment="Left" Height="47" Margin="108,56,0,0" TextWrapping="Wrap" Text="{Binding Adresse}" VerticalAlignment="Top" Width="153" RenderTransformOrigin="0.451,0.652"/>
+        <Label Content="Date Naissance : " HorizontalAlignment="Left" Margin="0,108,0,0" VerticalAlignment="Top"/>
+        <DatePicker SelectedDate="{Binding DateNaissance}" HorizontalAlignment="Left" Margin="108,108,0,0" VerticalAlignment="Top" Width="153"/>
+        <Label Content="Sexe : " HorizontalAlignment="Left" Margin="53,139,0,0" VerticalAlignment="Top"/>
+
+        <Button Content="Nouveau" Command="{Binding NewCommand}" HorizontalAlignment="Left" Margin="352,25,0,0" VerticalAlignment="Top" Width="123" Height="22"/>
+        <Button Content="Rechercher" Command="{Binding SearchCommand}" HorizontalAlignment="Left" Margin="352,91,0,0" VerticalAlignment="Top" Width="123" Height="28"/>
+        <Button Content="Ajouter" Command="{Binding AddCommand}" HorizontalAlignment="Left" Margin="352,54,0,0" VerticalAlignment="Top" Width="123" Height="32"/>
+        <Button Content="Modifier" Command="{Binding EditCommand}" HorizontalAlignment="Left" Margin="352,124,0,0" VerticalAlignment="Top" Width="123" Height="28"/>
+        <Button Content="Supprimer" Command="{Binding DeleteCommand}" HorizontalAlignment="Left" Margin="352,157,0,0" VerticalAlignment="Top" Width="123" Height="31"/>
+        <RadioButton Content="Homme" IsChecked="{Binding SexeHomme}" HorizontalAlignment="Left" Margin="108,145,0,0" VerticalAlignment="Top"/>
+        <RadioButton Content="Femme" IsChecked="{Binding SexeFemme}" HorizontalAlignment="Left" Margin="199,145,0,0" VerticalAlignment="Top"/>
+
     </Grid>
 </Window>
