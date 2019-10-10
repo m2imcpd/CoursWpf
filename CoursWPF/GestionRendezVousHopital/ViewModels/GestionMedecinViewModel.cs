@@ -72,6 +72,9 @@ namespace GestionRendezVousHopital.ViewModels
             Specialites = Enum.GetValues(typeof(Specialite)).Cast<Specialite>().ToList();
             NewCommand = new RelayCommand(NewMedecin);
             AddCommand = new RelayCommand(AddMedecin);
+            SearchCommand = new RelayCommand(SearchMedecin);
+            EditCommand = new RelayCommand(UpdateMedecin);
+            DeleteCommand = new RelayCommand(DeleteMedecin);
         }
 
         private void NewMedecin()
@@ -85,7 +88,7 @@ namespace GestionRendezVousHopital.ViewModels
 
         private void AddMedecin()
         {
-            if(medecin.Add())
+            if (medecin.Add())
             {
                 MessageBox.Show("Medecin ajouté avec numéro : " + medecin.Id);
                 NewMedecin();
@@ -94,6 +97,70 @@ namespace GestionRendezVousHopital.ViewModels
             {
                 MessageBox.Show("Erreur d'insertion");
             }
+        }
+
+        private void SearchMedecin()
+        {
+            medecin = Medecin.SearchMedecinByPhone(Telephone);
+            if(medecin == null)
+            {
+                MessageBox.Show("Aucun medecin");
+                NewMedecin();
+            }
+            else
+            {
+                RaiseAllProperties();
+            }
+        }
+
+        private void UpdateMedecin()
+        {
+            
+            if (medecin.Id > 0)
+            {
+                if(medecin.Update())
+                {
+                    MessageBox.Show("Medecin mis à jour");
+                }
+                else
+                {
+                    MessageBox.Show("Erreur serveur");
+                }
+            }
+            else
+            {
+                MessageBox.Show("Merci de rechercher un medecin");
+            }
+        }
+
+        private void DeleteMedecin()
+        {
+            
+            if (medecin.Id > 0)
+            {
+                if (medecin.Delete())
+                {
+                    MessageBox.Show("Medecin supprimé");
+                    NewMedecin();
+                    RaiseAllProperties();
+                }
+                else
+                {
+                    MessageBox.Show("Erreur serveur");
+                }
+            }
+            else
+            {
+                MessageBox.Show("Merci de rechercher un medecin");
+            }
+        }
+
+        private void RaiseAllProperties()
+        {
+            RaisePropertyChanged("Nom");
+            RaisePropertyChanged("DateEmbauche");
+            RaisePropertyChanged("Telephone");
+            RaisePropertyChanged("Specialite");
         }
     }
 }

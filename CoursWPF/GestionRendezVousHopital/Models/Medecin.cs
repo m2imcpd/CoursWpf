@@ -43,6 +43,63 @@ namespace GestionRendezVousHopital.Models
             return res;
         }
 
+        public bool Update()
+        {
+            bool res = false;
+            DataBase.Instance.command = new SqlCommand("UPDATE medecin set " +
+                "nomMedecin = @nom, telMedecin = @tel, dateEmbauche = @dateEmbauche, specialiteMedecin = @specialite " +
+                "WHERE id = @id", DataBase.Instance.connection);
+            DataBase.Instance.command.Parameters.Add(new SqlParameter("@nom", Nom));
+            DataBase.Instance.command.Parameters.Add(new SqlParameter("@tel", Telephone));
+            DataBase.Instance.command.Parameters.Add(new SqlParameter("@dateEmbauche",DateEmbauche));
+            DataBase.Instance.command.Parameters.Add(new SqlParameter("@specialite",Specialite));
+            DataBase.Instance.command.Parameters.Add(new SqlParameter("@id",Id));
+            DataBase.Instance.connection.Open();
+            if(DataBase.Instance.command.ExecuteNonQuery() > 0)
+            {
+                res = true;
+            }
+            DataBase.Instance.command.Dispose();
+            DataBase.Instance.connection.Close();
+            return res;
+        }
+
+        public bool Delete()
+        {
+            bool res = false;
+            DataBase.Instance.command = new SqlCommand("DELETE FROM Medecin where id = @id", DataBase.Instance.connection);
+            DataBase.Instance.command.Parameters.Add(new SqlParameter("@id", Id));
+            DataBase.Instance.connection.Open();
+            if (DataBase.Instance.command.ExecuteNonQuery() > 0)
+            {
+                res = true;
+            }
+            DataBase.Instance.command.Dispose();
+            DataBase.Instance.connection.Close();
+            return res;
+        }
+
+        public static Medecin SearchMedecinByPhone(string phone)
+        {
+            Medecin m = null;
+            DataBase.Instance.command = new SqlCommand("SELECT id, nomMedecin, dateEmbauche, specialiteMedecin from medecin where telMedecin = @telephone", DataBase.Instance.connection);
+            DataBase.Instance.command.Parameters.Add(new SqlParameter("@telephone", phone));
+            DataBase.Instance.connection.Open();
+            DataBase.Instance.reader = DataBase.Instance.command.ExecuteReader();
+            if(DataBase.Instance.reader.Read())
+            {
+                m = new Medecin();
+                m.Id = DataBase.Instance.reader.GetInt32(0);
+                m.Nom = DataBase.Instance.reader.GetString(1);
+                m.DateEmbauche = DataBase.Instance.reader.GetDateTime(2);
+                m.Specialite = (Specialite)DataBase.Instance.reader.GetInt32(3);
+                m.Telephone = phone;
+            }
+            DataBase.Instance.command.Dispose();
+            DataBase.Instance.connection.Close();
+            return m;
+        }
+
     }
 
     public enum Specialite
