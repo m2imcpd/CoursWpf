@@ -1,5 +1,6 @@
 ﻿using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
+using GalaSoft.MvvmLight.Messaging;
 using GestionRendezVousHopital.Models;
 using System;
 using System.Collections.Generic;
@@ -107,6 +108,7 @@ namespace GestionRendezVousHopital.ViewModels
             if (patient.Add())
             {
                 MessageBox.Show("Patient ajouté avec numéro : " + patient.Id);
+                Messenger.Default.Send<Patient>(patient);
                 NewPatient();
             }
             else
@@ -137,6 +139,7 @@ namespace GestionRendezVousHopital.ViewModels
                 if (patient.Update())
                 {
                     MessageBox.Show("patient mis à jour");
+                    Messenger.Default.Send<Patient>(patient);
                 }
                 else
                 {

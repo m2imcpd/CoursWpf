@@ -1,6 +1,7 @@
 ﻿using GestionRendezVousHopital.Tools;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
@@ -96,6 +97,28 @@ namespace GestionRendezVousHopital.Models
             DataBase.Instance.command.Dispose();
             DataBase.Instance.connection.Close();
             return p;
+        }
+
+        public static ObservableCollection<Patient> GetAllPatients()
+        {
+            ObservableCollection<Patient> liste = new ObservableCollection<Patient>();
+            DataBase.Instance.command = new SqlCommand("SELECT id, adressePatient, dateNaissance, sexePatient, nomPatient from patient", DataBase.Instance.connection);
+            
+            DataBase.Instance.connection.Open();
+            DataBase.Instance.reader = DataBase.Instance.command.ExecuteReader();
+            while(DataBase.Instance.reader.Read())
+            {
+                Patient p = new Patient();
+                p.Id = DataBase.Instance.reader.GetInt32(0);
+                p.Nom = DataBase.Instance.reader.GetString(4);
+                p.DateNaissance = DataBase.Instance.reader.GetDateTime(2);
+                p.SexePatient = DataBase.Instance.reader.GetString(3);
+                p.Adresse = DataBase.Instance.reader.GetString(1);
+                liste.Add(p);
+            }
+            DataBase.Instance.command.Dispose();
+            DataBase.Instance.connection.Close();
+            return liste;
         }
     }
 }
