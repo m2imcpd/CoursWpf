@@ -1,6 +1,7 @@
 ﻿using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using GestionRendezVousHopital.Models;
+using GestionRendezVousHopital.Tools;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -97,10 +98,10 @@ namespace GestionRendezVousHopital.ViewModels
             AllMedecins = true;
             ListeAfficher = Medecin.GetAllMedecins();
 
-            EditDataCommand = new RelayCommand(EditData);
+            EditDataCommand = new RelayDataGridCommand(EditData);
         }
 
-        private void EditData()
+        private void EditData(object sender, DataGridRowEditEndingEventArgs e)
         {
             foreach(dynamic o in ListeAfficher)
             {

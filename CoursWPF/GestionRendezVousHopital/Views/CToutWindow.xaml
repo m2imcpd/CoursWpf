@@ -5,6 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:GestionRendezVousHopital.Views"
         xmlns:viewModels="clr-namespace:GestionRendezVousHopital.ViewModels"
+        xmlns:cmd="http://www.galasoft.ch/mvvmlight"
         mc:Ignorable="d"
         xmlns:i ="http://schemas.microsoft.com/expression/2010/interactivity"
         Title="CToutWindow" Height="450" Width="800">
@@ -17,8 +18,9 @@
         <RadioButton IsChecked="{Binding AllRDV}" Content="Tous les RDV" HorizontalAlignment="Left" Margin="619,62,0,0" VerticalAlignment="Top"/>
         <DataGrid ItemsSource="{Binding ListeAfficher}" AutoGenerateColumns="True" HorizontalAlignment="Left" Height="292" Margin="61,118,0,0" VerticalAlignment="Top" Width="677">
             <i:Interaction.Triggers>
-                <i:EventTrigger EventName="RowEditEnding">
-                    <i:InvokeCommandAction Command="{Binding EditDataCommand }" ></i:InvokeCommandAction>
+                <i:EventTrigger EventName="CellRowEnding">
+                    
+                    <cmd:EventToCommand Command="{Binding EditDataCommand}" PassEventArgsToCommand="True"></cmd:EventToCommand>
                 </i:EventTrigger>
             </i:Interaction.Triggers>
         </DataGrid>
