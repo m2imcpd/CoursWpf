@@ -75,6 +75,7 @@
     <Compile Include="Models\Patient.cs" />
     <Compile Include="Models\RDV.cs" />
     <Compile Include="Tools\DataBase.cs" />
+    <Compile Include="ViewModels\CToutViewModel.cs" />
     <Compile Include="ViewModels\GestionMedecinViewModel.cs" />
     <Compile Include="ViewModels\GestionPatientViewModel.cs" />
     <Compile Include="ViewModels\GestionRDVViewModel.cs" />

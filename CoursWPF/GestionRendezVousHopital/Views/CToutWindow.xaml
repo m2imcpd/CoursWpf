@@ -4,9 +4,19 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:GestionRendezVousHopital.Views"
+        xmlns:viewModels="clr-namespace:GestionRendezVousHopital.ViewModels"
         mc:Ignorable="d"
         Title="CToutWindow" Height="450" Width="800">
+    <Window.DataContext>
+        <viewModels:CToutViewModel></viewModels:CToutViewModel>
+    </Window.DataContext>
     <Grid>
-        
+        <RadioButton IsChecked="{Binding AllMedecins}" Content="Tous les medecins" HorizontalAlignment="Left" Margin="61,59,0,0" VerticalAlignment="Top"/>
+        <RadioButton IsChecked="{Binding AllPatients}" Content="Tous les patients" HorizontalAlignment="Left" Margin="332,59,0,0" VerticalAlignment="Top"/>
+        <RadioButton IsChecked="{Binding AllRDV}" Content="Tous les RDV" HorizontalAlignment="Left" Margin="619,62,0,0" VerticalAlignment="Top"/>
+        <ListView ItemsSource="{Binding ListeAfficher}" View="{Binding maGridView}" HorizontalAlignment="Left" Height="280" Margin="35,102,0,0" VerticalAlignment="Top" Width="731">
+            
+        </ListView>
+
     </Grid>
 </Window>

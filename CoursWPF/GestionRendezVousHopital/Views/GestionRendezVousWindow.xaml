@@ -6,6 +6,7 @@
         xmlns:local="clr-namespace:GestionRendezVousHopital.Views"
         mc:Ignorable="d"
         xmlns:viewModels ="clr-namespace:GestionRendezVousHopital.ViewModels"
+        xmlns:sys="clr-namespace:System;assembly=mscorlib"
         Title="GestionRendezVousWindow" Height="450" Width="800">
     <Window.DataContext>
         <viewModels:GestionRDVViewModel></viewModels:GestionRDVViewModel>
@@ -25,7 +26,7 @@
         <Label Content="Specialité : " HorizontalAlignment="Left" Margin="413,123,0,0" VerticalAlignment="Top"/>
         <TextBox  HorizontalAlignment="Left" Height="23" Margin="508,122,0,0" TextWrapping="Wrap" IsEnabled="False" Text="{Binding Specialite, Mode=OneWay}" VerticalAlignment="Top" Width="129"/>
         <Label Content="Date RDV : " HorizontalAlignment="Left" Margin="48,184,0,0" VerticalAlignment="Top" Width="83"/>
-        <DatePicker SelectedDate="{Binding DateRDV}" HorizontalAlignment="Left" Margin="131,184,0,0" VerticalAlignment="Top" Width="150"/>
+        <DatePicker DisplayDateStart="{x:Static sys:DateTime.Today}" SelectedDate="{Binding DateRDV}" HorizontalAlignment="Left" Margin="131,184,0,0" VerticalAlignment="Top" Width="150"/>
         <Label Content="Heure RDV:" HorizontalAlignment="Left" Margin="48,226,0,0" VerticalAlignment="Top"/>
         <TextBox HorizontalAlignment="Left" Height="23" Margin="131,228,0,0" TextWrapping="Wrap" Text="{Binding HeureRDV}" VerticalAlignment="Top" Width="150"/>
         <Button Content="Ajouter RDV" Command="{Binding AddRDVCommand}" HorizontalAlignment="Left" Margin="384,184,0,0" VerticalAlignment="Top" Width="253"/>

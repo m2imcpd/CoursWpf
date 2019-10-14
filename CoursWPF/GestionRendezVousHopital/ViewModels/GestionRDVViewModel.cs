@@ -55,6 +55,9 @@ namespace GestionRendezVousHopital.ViewModels
             }
         }
 
+        private static DateTime? dateStart = DateTime.Today;
+        
+
         public ICommand AddRDVCommand { get; set; }
 
         public ICommand NewRDVCommand { get; set; }
@@ -102,6 +105,7 @@ namespace GestionRendezVousHopital.ViewModels
         {
             get => medecin.Specialite;
         }
+        public static DateTime? DateStart { get => dateStart; set => dateStart = value; }
 
         public GestionRDVViewModel()
         {
@@ -109,7 +113,7 @@ namespace GestionRendezVousHopital.ViewModels
             ListePatients = Patient.GetAllPatients();
             rdv = new RDV();
             NewRDVCommand = new RelayCommand(NewRDV);
-
+           
             AddRDVCommand = new RelayCommand(AddRDV);
             Messenger.Default.Register<Patient>(this, p =>
             {

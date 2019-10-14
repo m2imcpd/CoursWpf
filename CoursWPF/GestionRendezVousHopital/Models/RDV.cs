@@ -1,6 +1,7 @@
 ﻿using GestionRendezVousHopital.Tools;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
@@ -39,6 +40,29 @@ namespace GestionRendezVousHopital.Models
                 res = true;
             }
             return res;
+        }
+
+        public static ObservableCollection<RDV> GetAllRDVS()
+        {
+            ObservableCollection<RDV> liste = new ObservableCollection<RDV>();
+            DataBase.Instance.command = new SqlCommand("SELECT id, DateRDV, HeureRDV, CodeMedecin, CodePatient from RDV", DataBase.Instance.connection);
+
+            DataBase.Instance.connection.Open();
+            DataBase.Instance.reader = DataBase.Instance.command.ExecuteReader();
+            while (DataBase.Instance.reader.Read())
+            {
+                RDV r = new RDV();
+                r.Id = DataBase.Instance.reader.GetInt32(0);
+                r.DateRDV = DataBase.Instance.reader.GetDateTime(1);
+                r.Heure = DataBase.Instance.reader.GetString(2);
+                r.MedecinId = DataBase.Instance.reader.GetInt32(3);
+                r.PatientId = DataBase.Instance.reader.GetInt32(4);
+                liste.Add(r);
+            }
+            DataBase.Instance.command.Dispose();
+            DataBase.Instance.connection.Close();
+
+            return liste;
         }
     }
 }
