@@ -22,6 +22,7 @@
                 <MenuItem Header="Rechercher RDV par date" Command="{Binding CParDateCommand}"></MenuItem>
                 <MenuItem Header="Rechercher les RDV d'un patient" Command="{Binding CParClientCommand}"></MenuItem>
             </MenuItem>
+            <MenuItem Header="Quitter" Command="{Binding QuitterCommand}"></MenuItem>
         </Menu>
 
     </Grid>

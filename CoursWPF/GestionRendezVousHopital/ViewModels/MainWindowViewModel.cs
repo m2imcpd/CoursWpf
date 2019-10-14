@@ -21,6 +21,8 @@ namespace GestionRendezVousHopital.ViewModels
         public ICommand CParDateCommand { get; set; }
         public ICommand CParClientCommand { get; set; }
 
+        public ICommand QuitterCommand { get; set; }
+
         public MainWindowViewModel()
         {
            
@@ -53,6 +55,18 @@ namespace GestionRendezVousHopital.ViewModels
             {
                 CParClientWindow w = new CParClientWindow();
                 w.Show();
+            });
+
+            QuitterCommand = new RelayCommand(() =>
+            {
+                //pour fermer la fenetre active
+                Application.Current.Windows.Cast<Window>().FirstOrDefault(x => x.IsActive).Close();
+
+                //pour fermer toutes les fenetres
+                //foreach(Window w  in Application.Current.Windows)
+                //{
+                //    w.Close();
+                //}
             });
 
         }

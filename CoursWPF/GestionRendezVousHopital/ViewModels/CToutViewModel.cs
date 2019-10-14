@@ -1,4 +1,5 @@
 ﻿using GalaSoft.MvvmLight;
+using GalaSoft.MvvmLight.Command;
 using GestionRendezVousHopital.Models;
 using System;
 using System.Collections.Generic;
@@ -9,6 +10,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Controls;
 using System.Windows.Data;
+using System.Windows.Input;
 
 namespace GestionRendezVousHopital.ViewModels
 {
@@ -33,10 +35,10 @@ namespace GestionRendezVousHopital.ViewModels
                     AllPatients = false;
                     AllRDV = false;
                     //maGridView = GenerateGridViewMedecin();
-                    maGridView = GenerateGridViewByType(typeof(Medecin));
+                    //maGridView = GenerateGridViewByType(typeof(Medecin));
                     ListeAfficher = Medecin.GetAllMedecins();
                     RaisePropertyChanged("ListeAfficher");
-                    RaisePropertyChanged("maGridView");
+                    //RaisePropertyChanged("maGridView");
                 }
                 RaisePropertyChanged();
             }
@@ -51,10 +53,10 @@ namespace GestionRendezVousHopital.ViewModels
                     AllMedecins = false;
                     AllRDV = false;
                     //maGridView = GenerateGridViewPatient();
-                    maGridView = GenerateGridViewByType(typeof(Patient));
+                    //maGridView = GenerateGridViewByType(typeof(Patient));
                     ListeAfficher = Patient.GetAllPatients();
                     RaisePropertyChanged("ListeAfficher");
-                    RaisePropertyChanged("maGridView");
+                    //RaisePropertyChanged("maGridView");
                 }
                 RaisePropertyChanged();
             }
@@ -70,10 +72,10 @@ namespace GestionRendezVousHopital.ViewModels
                     AllPatients = false;
                     AllMedecins = false;
                     //maGridView = GenerateGridViewRDV();
-                    maGridView = GenerateGridViewByType(typeof(RDV));
+                    //maGridView = GenerateGridViewByType(typeof(RDV));
                     ListeAfficher = RDV.GetAllRDVS();
                     RaisePropertyChanged("ListeAfficher");
-                    RaisePropertyChanged("maGridView");
+                    //RaisePropertyChanged("maGridView");
                 }
                 RaisePropertyChanged();
             }
@@ -85,15 +87,33 @@ namespace GestionRendezVousHopital.ViewModels
 
         private bool allRDV;
 
+        public ICommand EditDataCommand { get; set; }
+
 
         public CToutViewModel()
         {
             //maGridView = GenerateGridViewMedecin();
-            maGridView = GenerateGridViewByType(typeof(Medecin));
+            //maGridView = GenerateGridViewByType(typeof(Medecin));
             AllMedecins = true;
             ListeAfficher = Medecin.GetAllMedecins();
+
+            EditDataCommand = new RelayCommand(EditData);
         }
 
+        private void EditData()
+        {
+            foreach(dynamic o in ListeAfficher)
+            {
+                if(o.Id > 0)
+                {
+                    o.Update();
+                }
+                else
+                {
+                    o.Add();
+                }
+            }
+        }
 
         //private GridView GenerateGridViewMedecin()
         //{
@@ -128,15 +148,15 @@ namespace GestionRendezVousHopital.ViewModels
         //    return g;
         //}
 
-        private GridView GenerateGridViewByType(Type type)
-        {
-            GridView g = new GridView();
-            PropertyInfo[] allProperties = type.GetProperties();
-            foreach(PropertyInfo p in allProperties)
-            {
-                g.Columns.Add(new GridViewColumn() { Width = 150, Header =  p.Name, DisplayMemberBinding = new Binding(p.Name)});
-            }
-            return g;
-        }
+        //private GridView GenerateGridViewByType(Type type)
+        //{
+        //    GridView g = new GridView();
+        //    PropertyInfo[] allProperties = type.GetProperties();
+        //    foreach(PropertyInfo p in allProperties)
+        //    {
+        //        g.Columns.Add(new GridViewColumn() { Width = 150, Header =  p.Name, DisplayMemberBinding = new Binding(p.Name)});
+        //    }
+        //    return g;
+        //}
     }
 }
