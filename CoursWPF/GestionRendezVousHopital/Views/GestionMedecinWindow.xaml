@@ -6,7 +6,9 @@
         xmlns:local="clr-namespace:GestionRendezVousHopital.Views"
         xmlns:viewModels ="clr-namespace:GestionRendezVousHopital.ViewModels"
         mc:Ignorable="d"
-        Title="GestionMedecinWindow" Height="297.2" Width="509.6">
+        Title="GestionMedecinWindow" Height="297.2" Width="509.6"
+        xmlns:extensions="clr-namespace:GestionRendezVousHopital.Tools"
+        >
     <Window.DataContext>
         <viewModels:GestionMedecinViewModel></viewModels:GestionMedecinViewModel>
     </Window.DataContext>
@@ -14,7 +16,8 @@
         <Label Content="Nom : " HorizontalAlignment="Left" Margin="44,25,0,0" VerticalAlignment="Top" Width="59"/>
         <TextBox HorizontalAlignment="Left" Height="23" Margin="108,28,0,0" TextWrapping="Wrap" Text="{Binding Nom}" VerticalAlignment="Top" Width="153" RenderTransformOrigin="0.451,0.652"/>
         <Label Content="Tel : " HorizontalAlignment="Left" Margin="48,66,0,0" VerticalAlignment="Top" Width="59"/>
-        <TextBox HorizontalAlignment="Left" Height="23" Margin="108,69,0,0" TextWrapping="Wrap" Text="{Binding Telephone}" VerticalAlignment="Top" Width="153" RenderTransformOrigin="0.451,0.652"/>
+        <extensions:TextBoxMask HorizontalAlignment="Left" Height="23" Margin="108,69,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="153" RenderTransformOrigin="0.451,0.652"/>
+        
         <Label Content="Date embauche : " HorizontalAlignment="Left" Margin="5,106,0,0" VerticalAlignment="Top"/>
         <DatePicker SelectedDate="{Binding DateEmbauche}" HorizontalAlignment="Left" Margin="112,108,0,0" VerticalAlignment="Top"/>
         <Label Content="Specialité : " HorizontalAlignment="Left" Margin="24,153,0,0" VerticalAlignment="Top"/>
