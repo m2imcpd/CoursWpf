@@ -1,0 +1,43 @@
+﻿<Window x:Class="ProduitEntityWPF.Views.PanierWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ProduitEntityWPF.Views"
+        xmlns:viewModels="clr-namespace:ProduitEntityWPF.ViewModels"
+        xmlns:i ="http://schemas.microsoft.com/expression/2010/interactivity"
+        mc:Ignorable="d"
+        Title="PanierWindow" Height="450" Width="800">
+    <Window.DataContext>
+        <viewModels:PanierWindowViewModel></viewModels:PanierWindowViewModel>
+    </Window.DataContext>
+    <Grid>
+        <Label Content="Rechercher un produit" HorizontalAlignment="Left" Margin="27,23,0,0" VerticalAlignment="Top"/>
+        <TextBox HorizontalAlignment="Left" Height="23" Margin="160,26,0,0" TextWrapping="Wrap" Text="{Binding Search, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="120">
+            <i:Interaction.Triggers>
+                <i:EventTrigger EventName="KeyUp">
+                    <i:InvokeCommandAction Command="{Binding SearchCommand}"></i:InvokeCommandAction>
+                </i:EventTrigger>
+            </i:Interaction.Triggers>
+        </TextBox>
+        <ListBox ItemsSource="{Binding ListeProduits}" SelectedItem="{Binding ProduitSelected}" HorizontalAlignment="Left" Height="190" Margin="27,86,0,0" VerticalAlignment="Top" Width="253"/>
+        <Label Content="Resultat de la recherche" HorizontalAlignment="Left" Margin="27,55,0,0" VerticalAlignment="Top" Width="253"/>
+        <Button Content="Ajouter au panier" Command="{Binding AddPanierCommand}" HorizontalAlignment="Left" Margin="27,317,0,0" VerticalAlignment="Top" Width="253"/>
+        <Label Content="Panier" HorizontalAlignment="Left" Margin="326,23,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.141,-0.25" Width="54"/>
+        <ListView ItemsSource="{Binding ListeProduitsPanier}" HorizontalAlignment="Left" Height="221" Margin="326,55,0,0" VerticalAlignment="Top" Width="448">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="Id Produit" DisplayMemberBinding="{Binding Produit.Id}" Width="80"/>
+                    <GridViewColumn Header="Titre Produit" DisplayMemberBinding="{Binding Produit.Titre}" Width="80"/>
+                    <GridViewColumn Header="PU" DisplayMemberBinding="{Binding Produit.Prix}" Width="80"/>
+                    <GridViewColumn Header="QTY" DisplayMemberBinding="{Binding Qty}" Width="80"/>
+                    <GridViewColumn Header="Total Produit" DisplayMemberBinding="{Binding TotalProduit}" Width="80"/>
+                </GridView>
+            </ListView.View>
+        </ListView>
+        <Label Content="Total : " HorizontalAlignment="Left" Margin="695,286,0,0" VerticalAlignment="Top"/>
+        <Label Content="{Binding Total}" HorizontalAlignment="Left" Margin="758,286,0,0" VerticalAlignment="Top"/>
+        <Button Content="Valider Panier" HorizontalAlignment="Left" Margin="326,317,0,0" VerticalAlignment="Top" Width="448"/>
+
+    </Grid>
+</Window>

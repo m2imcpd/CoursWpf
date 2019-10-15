@@ -2,6 +2,7 @@
 using GalaSoft.MvvmLight.CommandWpf;
 using ProduitEntityWPF.Classes;
 using ProduitEntityWPF.Tools;
+using ProduitEntityWPF.Views;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -48,13 +49,20 @@ namespace ProduitEntityWPF.ViewModels
 
         public ICommand AddCommand { get; set; }
 
+        public ICommand StartPanierWindowCommand { get; set; }
+
         private DataDbContext data;
         public MainWindowViewModel()
         {
             produit = new Produit();
             data = new DataDbContext();
             ListeProduits = new ObservableCollection<Produit>(data.Produits.Cast<Produit>());
-            AddCommand = new RelayCommand(AddProduits);   
+            AddCommand = new RelayCommand(AddProduits);
+            StartPanierWindowCommand = new RelayCommand(() =>
+            {
+                PanierWindow w = new PanierWindow();
+                w.Show();
+            });
         }
         private void AddProduits()
         {

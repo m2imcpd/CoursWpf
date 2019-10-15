@@ -15,5 +15,7 @@ namespace ProduitEntityWPF.Tools
 
         }
         public DbSet<Produit> Produits { get; set; }
+
+        public DbSet<Panier> Paniers { get; set; }
     }
 }

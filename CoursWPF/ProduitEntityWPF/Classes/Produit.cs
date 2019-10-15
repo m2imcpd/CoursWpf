@@ -17,5 +17,17 @@ namespace ProduitEntityWPF.Classes
         public string Titre { get => titre; set => titre = value; }
         public float Prix { get => prix; set => prix = value; }
         public int Stock { get => stock; set => stock = value; }
+
+        public virtual ICollection<Panier> Paniers { get; set; }
+
+        public Produit()
+        {
+            Paniers = new List<Panier>();
+        }
+
+        public override string ToString()
+        {
+            return $"{Titre} {Prix}€ qty disponible {Stock}";
+        }
     }
 }
