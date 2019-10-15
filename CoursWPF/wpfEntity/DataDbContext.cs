@@ -18,5 +18,9 @@ namespace wpfEntity
         public DbSet<Personne> Personnes { get; set; }
 
         public DbSet<Adresse> Adresses { get; set; }
+
+        public DbSet<Course> Courses { get; set; }
+
+        public DbSet<Student> Students { get; set; }
     }
 }

@@ -45,8 +45,19 @@ namespace wpfEntity
             //data.Adresses.Add(a);
             //data.SaveChanges();
 
-            var a = data.Adresses.Include("Personne").FirstOrDefault();
-            MessageBox.Show(a.Personne.Nom);
+            //var a = data.Adresses.Include("Personne").FirstOrDefault();
+            //MessageBox.Show(a.Personne.Nom);
+
+
+            //Student s = new Student { FirstName = "Ihab", LastName = "Abadi" };
+            //Course c = new Course { Title = "c#" };
+            //s.Courses.Add(c);
+            //c.Students.Add(s);
+            //data.Students.Add(s);
+            //data.Courses.Add(c);
+            //data.SaveChanges();
+            Student s = data.Students.Include("Courses").FirstOrDefault(x => x.LastName.StartsWith("a"));
+            MessageBox.Show((s.Courses as List<Course>)[0].Title);
         }
     }
 }
