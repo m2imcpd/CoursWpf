@@ -17,6 +17,8 @@ namespace ProduitEntityWPF.ViewModels
     {
         private string search;
 
+        private Panier panier;
+
         public ObservableCollection<Produit> ListeProduits { get; set; }
 
         public ObservableCollection<ProduitPanier> ListeProduitsPanier { get; set; }
@@ -34,7 +36,6 @@ namespace ProduitEntityWPF.ViewModels
         {
             get
             {
-
                 return ListeProduitsPanier.Sum(x => x.TotalProduit);
             }
         }
@@ -46,7 +47,9 @@ namespace ProduitEntityWPF.ViewModels
             data = new DataDbContext();
             SearchCommand = new RelayCommand(SearchProducts);
             AddPanierCommand = new RelayCommand(AddProduitToPanier);
+            ValidPanierCommand = new RelayCommand(ValidPanier);
             ListeProduitsPanier = new ObservableCollection<ProduitPanier>();
+            panier = new Panier();
         }
 
         private void AddProduitToPanier()
@@ -75,6 +78,20 @@ namespace ProduitEntityWPF.ViewModels
         {
             ListeProduits = new ObservableCollection<Produit>(data.Produits.Where(x => x.Titre.StartsWith(Search)));
             RaisePropertyChanged("ListeProduits");
+        }
+
+        private void ValidPanier()
+        {
+            foreach(ProduitPanier p in ListeProduitsPanier)
+            {
+                for(int i=1; i <= p.Qty; i++)
+                {
+                    panier.ProduitsPanier.Add(new PanierProduit { Produit = p.Produit, Panier = panier });
+                }
+            }
+            panier.Total = Total;
+            data.Paniers.Add(panier);
+            data.SaveChanges();
         }
     }
 }

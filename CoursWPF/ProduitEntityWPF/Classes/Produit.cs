@@ -18,11 +18,11 @@ namespace ProduitEntityWPF.Classes
         public float Prix { get => prix; set => prix = value; }
         public int Stock { get => stock; set => stock = value; }
 
-        public virtual ICollection<Panier> Paniers { get; set; }
+        public virtual ICollection<PanierProduit> PaniersProduit { get; set; }
 
         public Produit()
         {
-            Paniers = new List<Panier>();
+            PaniersProduit = new List<PanierProduit>();
         }
 
         public override string ToString()

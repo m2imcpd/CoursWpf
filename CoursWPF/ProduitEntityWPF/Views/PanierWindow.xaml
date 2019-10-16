@@ -37,7 +37,7 @@
         </ListView>
         <Label Content="Total : " HorizontalAlignment="Left" Margin="695,286,0,0" VerticalAlignment="Top"/>
         <Label Content="{Binding Total}" HorizontalAlignment="Left" Margin="758,286,0,0" VerticalAlignment="Top"/>
-        <Button Content="Valider Panier" HorizontalAlignment="Left" Margin="326,317,0,0" VerticalAlignment="Top" Width="448"/>
+        <Button Content="Valider Panier" Command="{Binding ValidPanierCommand}" HorizontalAlignment="Left" Margin="326,317,0,0" VerticalAlignment="Top" Width="448"/>
 
     </Grid>
 </Window>

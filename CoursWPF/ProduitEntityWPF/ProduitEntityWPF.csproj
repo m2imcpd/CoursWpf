@@ -81,6 +81,7 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Classes\Panier.cs" />
+    <Compile Include="Classes\PanierProduit.cs" />
     <Compile Include="Classes\Produit.cs" />
     <Compile Include="Classes\ProduitPanier.cs" />
     <Compile Include="Tools\DataDbContext.cs" />

@@ -16,11 +16,11 @@ namespace ProduitEntityWPF.Classes
         public int Id { get => id; set => id = value; }
         public decimal Total { get => total; set => total = value; }
 
-        public virtual ICollection<Produit> Produits { get; set; }
+        public virtual ICollection<PanierProduit> ProduitsPanier { get; set; }
 
         public Panier()
         {
-            Produits = new List<Produit>();
+            ProduitsPanier = new List<PanierProduit>();
         }
     }
 }
