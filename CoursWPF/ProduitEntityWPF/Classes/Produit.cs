@@ -20,9 +20,12 @@ namespace ProduitEntityWPF.Classes
 
         public virtual ICollection<PanierProduit> PaniersProduit { get; set; }
 
+        public virtual ICollection<ImageProduit> Images { get; set; }
+
         public Produit()
         {
             PaniersProduit = new List<PanierProduit>();
+            Images = new List<ImageProduit>();
         }
 
         public override string ToString()

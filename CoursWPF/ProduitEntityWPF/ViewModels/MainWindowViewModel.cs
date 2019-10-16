@@ -1,11 +1,13 @@
 ﻿using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.CommandWpf;
+using Microsoft.Win32;
 using ProduitEntityWPF.Classes;
 using ProduitEntityWPF.Tools;
 using ProduitEntityWPF.Views;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -46,10 +48,13 @@ namespace ProduitEntityWPF.ViewModels
         }
 
         public ObservableCollection<Produit> ListeProduits { get; set; }
+        public ObservableCollection<string> ListeUrlImages { get; set; }
 
         public ICommand AddCommand { get; set; }
 
         public ICommand StartPanierWindowCommand { get; set; }
+
+        public ICommand AddImageCommand { get; set; }
 
         private DataDbContext data;
         public MainWindowViewModel()
@@ -58,19 +63,45 @@ namespace ProduitEntityWPF.ViewModels
             data = new DataDbContext();
             ListeProduits = new ObservableCollection<Produit>(data.Produits.Cast<Produit>());
             AddCommand = new RelayCommand(AddProduits);
+            AddImageCommand = new RelayCommand(AddImageProduit);
+            ListeUrlImages = new ObservableCollection<string>();
             StartPanierWindowCommand = new RelayCommand(() =>
             {
                 PanierWindow w = new PanierWindow();
                 w.Show();
             });
         }
+
+        public void AddImageProduit()
+        {
+            OpenFileDialog open = new OpenFileDialog();
+            if (open.ShowDialog() == true)
+            {
+                ListeUrlImages.Add(open.FileName);
+            }
+        }
         private void AddProduits()
         {
+            foreach(string url in ListeUrlImages)
+            {
+                produit.Images.Add(new ImageProduit { UrlImage = MoveImageToImageFolder(url), Produit = produit });
+            }
             data.Produits.Add(produit);
             if(data.SaveChanges() > 0)
             {
                 ListeProduits.Add(produit);
             }
+        }
+
+        private string MoveImageToImageFolder(string urlToMove)
+        {
+            if(!Directory.Exists("images"))
+            {
+                Directory.CreateDirectory("images");
+            }
+            string urlAfterMove = Path.Combine("images", Path.GetFileName(urlToMove));
+            File.Copy(urlToMove, urlAfterMove);
+            return urlAfterMove;
         }
     }
 }

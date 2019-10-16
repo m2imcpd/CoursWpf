@@ -1,5 +1,6 @@
 ﻿using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
+using Microsoft.Win32;
 using ProduitEntityWPF.Classes;
 using ProduitEntityWPF.Tools;
 using System;
@@ -23,6 +24,8 @@ namespace ProduitEntityWPF.ViewModels
 
         public ObservableCollection<ProduitPanier> ListeProduitsPanier { get; set; }
 
+        
+
         public Produit ProduitSelected { get; set; }
 
         public ICommand SearchCommand { get; set; }
@@ -30,6 +33,8 @@ namespace ProduitEntityWPF.ViewModels
         public ICommand AddPanierCommand { get; set; }
 
         public ICommand ValidPanierCommand { get; set; }
+
+       
         public string Search { get => search; set { search = value; RaisePropertyChanged(); } }
 
         public decimal Total
@@ -48,9 +53,13 @@ namespace ProduitEntityWPF.ViewModels
             SearchCommand = new RelayCommand(SearchProducts);
             AddPanierCommand = new RelayCommand(AddProduitToPanier);
             ValidPanierCommand = new RelayCommand(ValidPanier);
+            
             ListeProduitsPanier = new ObservableCollection<ProduitPanier>();
+           
             panier = new Panier();
         }
+
+        
 
         private void AddProduitToPanier()
         {

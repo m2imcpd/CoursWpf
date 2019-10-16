@@ -80,6 +80,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Classes\ImageProduit.cs" />
     <Compile Include="Classes\Panier.cs" />
     <Compile Include="Classes\PanierProduit.cs" />
     <Compile Include="Classes\Produit.cs" />

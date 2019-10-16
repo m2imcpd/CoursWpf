@@ -20,6 +20,8 @@ namespace ProduitEntityWPF.Tools
 
         public DbSet<PanierProduit> PaniersProduits { get; set; }
 
+        public DbSet<ImageProduit> ImageProduits { get; set; }
+
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Produit>().ToTable("MesProduits");
