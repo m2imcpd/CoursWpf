@@ -79,6 +79,7 @@ namespace ProduitEntityWPF.ViewModels
             {
                 ListeUrlImages.Add(open.FileName);
             }
+            RaisePropertyChanged("ListeUrlImages");
         }
         private void AddProduits()
         {
@@ -90,6 +91,7 @@ namespace ProduitEntityWPF.ViewModels
             if(data.SaveChanges() > 0)
             {
                 ListeProduits.Add(produit);
+                ListeUrlImages = new ObservableCollection<string>();
             }
         }
 

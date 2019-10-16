@@ -28,6 +28,13 @@
             <ListView.View>
                 <GridView>
                     <GridViewColumn Header="Id Produit" DisplayMemberBinding="{Binding Produit.Id}" Width="80"/>
+                    <GridViewColumn Header="Image Produit" Width="50">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <Image Source="{Binding Produit.Images[0].UrlImage}" Width="50"></Image>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
                     <GridViewColumn Header="Titre Produit" DisplayMemberBinding="{Binding Produit.Titre}" Width="80"/>
                     <GridViewColumn Header="PU" DisplayMemberBinding="{Binding Produit.Prix}" Width="80"/>
                     <GridViewColumn Header="QTY" DisplayMemberBinding="{Binding Qty}" Width="80"/>
