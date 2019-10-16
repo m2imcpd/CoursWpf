@@ -92,6 +92,7 @@ namespace ProduitEntityWPF.ViewModels
             {
                 ListeProduits.Add(produit);
                 ListeUrlImages = new ObservableCollection<string>();
+                produit = new Produit();
             }
         }
 
@@ -101,7 +102,7 @@ namespace ProduitEntityWPF.ViewModels
             {
                 Directory.CreateDirectory("images");
             }
-            string urlAfterMove = Path.Combine("images", Path.GetFileName(urlToMove));
+            string urlAfterMove = Path.Combine(Directory.GetCurrentDirectory(),"images", Path.GetFileName(urlToMove));
             File.Copy(urlToMove, urlAfterMove);
             return urlAfterMove;
         }
