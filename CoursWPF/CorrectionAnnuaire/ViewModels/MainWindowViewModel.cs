@@ -26,12 +26,14 @@ namespace CorrectionAnnuaire.ViewModels
 
         public ICommand SearchContactCommand { get; set; }
 
-        public List<string> listeEmails { get; set; }
+        public List<Email> listeEmails { get; set; }
 
         public bool NomRadio { get; set; }
         public bool PrenomRadio { get; set; }
 
         private string searchPhone;
+
+        private DataDbContext data;
         public string SearchPhone
         {
             get => searchPhone; set
@@ -97,37 +99,49 @@ namespace CorrectionAnnuaire.ViewModels
         {
             contact = new Contact();
             email = new Email();
-            Contacts = DataBase.Instance.GetContactWithEmail();
-            
-            listeEmails = new List<string>();
+            //Contacts = DataBase.Instance.GetContactWithEmail();
+            data = new DataDbContext();
+            Contact ct = data.Contacts.Find(1);
+            data.Contacts.Remove(ct);
+            data.SaveChanges();
+            Contacts = new ObservableCollection<object>(data.Contacts.Include("Emails"));
+            listeEmails = new List<Email>();
             AddEmailCommand = new RelayCommand(() =>
             {
-                listeEmails.Add(Email);
+                listeEmails.Add(new Email { Mail = Email});
                 Email = "";
                 RaisePropertyChanged("Count");
-                MainWindow w = new MainWindow();
-                w.Show();
+                
             });
 
             AddContactCommand = new RelayCommand(() =>
             {
-                dynamic o = new
-                {
+                //dynamic o = new
+                //{
 
+                //    Nom = Nom,
+                //    Prenom = Prenom,
+                //    Telephone = Telephone,
+                //    Emails = listeEmails
+                //};
+
+                Contact c = new Contact
+                {
                     Nom = Nom,
                     Prenom = Prenom,
                     Telephone = Telephone,
                     Emails = listeEmails
                 };
-
-                if (DataBase.Instance.AddContactWithEmails(o))
+                data.Contacts.Add(c);
+                //if (DataBase.Instance.AddContactWithEmails(o))
+                if(data.SaveChanges() > 0)
                 {
-                    Contacts.Add(o);
+                    Contacts.Add(c);
 
                     Nom = "";
                     Prenom = "";
                     Telephone = "";
-                    listeEmails = new List<string>();
+                    listeEmails = new List<Email>();
                     RaisePropertyChanged();
                 }
                 else
@@ -139,7 +153,8 @@ namespace CorrectionAnnuaire.ViewModels
 
             SearchContactCommand = new RelayCommand(() =>
             {
-                SearchResult = DataBase.Instance.SearchContactByPhone((SearchPhone != null) ? SearchPhone : "");
+                //SearchResult = DataBase.Instance.SearchContactByPhone((SearchPhone != null) ? SearchPhone : "");
+                SearchResult = new ObservableCollection<object>(data.Contacts.Include("Emails").Where(x => x.Telephone == SearchPhone));
                 RaisePropertyChanged("SearchResult");
             });
         }

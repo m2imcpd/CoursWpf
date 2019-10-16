@@ -18,5 +18,12 @@ namespace CorrectionAnnuaire.Models
         public string Nom { get => nom; set => nom = value; }
         public string Prenom { get => prenom; set => prenom = value; }
         public string Telephone { get => telephone; set => telephone = value; }
+
+        public virtual ICollection<Email> Emails { get; set; }
+
+        public Contact()
+        {
+            Emails = new List<Email>();
+        }
     }
 }

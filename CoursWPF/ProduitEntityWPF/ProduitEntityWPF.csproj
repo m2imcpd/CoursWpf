@@ -84,6 +84,7 @@
     <Compile Include="Classes\PanierProduit.cs" />
     <Compile Include="Classes\Produit.cs" />
     <Compile Include="Classes\ProduitPanier.cs" />
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Tools\DataDbContext.cs" />
     <Compile Include="ViewModels\MainWindowViewModel.cs" />
     <Compile Include="ViewModels\PanierWindowViewModel.cs" />

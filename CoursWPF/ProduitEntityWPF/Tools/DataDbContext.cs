@@ -12,7 +12,7 @@ namespace ProduitEntityWPF.Tools
     {
         public DataDbContext() : base(@"Data Source=(LocalDb)\CoursMCPD;Integrated Security=True")
         {
-
+            Database.SetInitializer(new MigrateDatabaseToLatestVersion<DataDbContext, Migrations.Configuration>());
         }
         public DbSet<Produit> Produits { get; set; }
 
